@@ -14,6 +14,9 @@
 
 ## Estado SDD
 
+- **Hito activo para cierre operativo:** Fase 0 / Hito 02, entorno de ejecución y prueba móvil. La compilación local del frontend pasó; Compose, proxy y validación en dispositivos siguen pendientes.
+- No se inicia el siguiente hito hasta completar esta validación y resolver las pruebas reales pendientes de los hitos anteriores.
+
 - F00-H00 Fundamentos/arquitectura: **CERRADO**.
 - F00-H01 Extracción vectorial: **EN VALIDACIÓN**; falta plano real.
 - F00-H02 Entorno de ejecución/prueba móvil: **EN VALIDACIÓN**; la compilación local del frontend pasa. El build integral de Docker está bloqueado por resolución DNS de Docker Hub; faltan prueba de proxy, navegador PC y Android.

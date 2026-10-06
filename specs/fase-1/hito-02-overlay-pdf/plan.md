@@ -9,3 +9,5 @@ PageGeometry ──> SVG overlay
 ```
 
 El SVG usa `viewBox="0 0 width height"` con las dimensiones devueltas por PyMuPDF. El contenedor fuerza la misma relación de aspecto que la geometría del backend.
+
+En Nginx, el worker PDF.js (`.mjs`) debe servirse como JavaScript para permitir su importación como módulo ES. La validación del stack detectó el MIME genérico `application/octet-stream`; se configuró `application/javascript` y se verificó el render del canvas en Chrome.

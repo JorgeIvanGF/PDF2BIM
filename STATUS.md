@@ -9,17 +9,23 @@
 - Frontend implementado: carga, diagnóstico, render del PDF original con PDF.js, overlay SVG, calibración táctil, detección, exportación JSON y visor 3D preliminar con That Open Engine.
 - Infraestructura local/móvil implementada: Docker Compose + Nginx reverse proxy, puerto único `8080`.
 - Build frontend local: **PASS** (`tsc -b` y Vite 8.3.2); los errores TS7016 y TS5096 no reaparecen. Se generó `frontend/package-lock.json` para fijar el árbol instalado.
-- Docker Compose: la imagen backend construye; la imagen web no pudo iniciar porque el daemon Docker no resolvió `registry-1.docker.io` para las imágenes base `node:24-alpine` y `nginx:1.29-alpine`.
-- No se pudieron verificar los contenedores en ejecución, el proxy `/api`, `http://localhost:8080` ni el acceso móvil.
+- **PASADO:** Docker Desktop 4.35.1 / Engine 27.3.1 responden con permisos elevados; Compose 2.29.7.
+- **PASADO:** `docker compose up --build -d` construye ambos servicios, accede a Docker Hub e inicia los contenedores.
+- **PASADO:** `http://localhost:8080` responde 200 y la interfaz se carga en Chrome.
+- **PASADO:** `/api/health` devuelve `status=ok`; la interfaz carga el fixture y consulta geometría vía `/api` same-origin (9 segmentos), sin requerir CORS.
+- **FALLIDO, CORREGIDO Y REVERIFICADO:** Nginx servía el worker `.mjs` como `application/octet-stream`, lo que impedía su importación. Ahora devuelve `application/javascript` y PDF.js renderiza el canvas 1053×744 sin mensaje de error.
+- **PASADO EN EL HOST:** `192.168.20.183:8080` responde 200 desde este PC y Docker publica el puerto en `0.0.0.0`.
+- **BLOQUEADO:** ninguno actualmente por dependencias externas; el fallo DNS previo de Docker Hub no se reprodujo.
+- **PASADO, reportado por el usuario:** desde un teléfono en la misma Wi-Fi, `http://192.168.20.183:8080` cargó y `/api/health` respondió `status: ok`. Modelo, SO y navegador no informados.
 
 ## Estado SDD
 
-- **Hito activo para cierre operativo:** Fase 0 / Hito 02, entorno de ejecución y prueba móvil. La compilación local del frontend pasó; Compose, proxy y validación en dispositivos siguen pendientes.
-- No se inicia el siguiente hito hasta completar esta validación y resolver las pruebas reales pendientes de los hitos anteriores.
+- **F00-H02 está cerrado** tras completar sus cinco criterios de aceptación.
+- No se inicia otro hito en esta intervención, según la instrucción del usuario.
 
 - F00-H00 Fundamentos/arquitectura: **CERRADO**.
 - F00-H01 Extracción vectorial: **EN VALIDACIÓN**; falta plano real.
-- F00-H02 Entorno de ejecución/prueba móvil: **EN VALIDACIÓN**; la compilación local del frontend pasa. El build integral de Docker está bloqueado por resolución DNS de Docker Hub; faltan prueba de proxy, navegador PC y Android.
+- F00-H02 Entorno de ejecución/prueba móvil: **CERRADO**; cinco criterios cumplidos. La validación desde teléfono se registra como reportada por el usuario.
 - F01-H00 Normalización: **EN VALIDACIÓN provisional**.
 - F01-H01 Calibración: **EN VALIDACIÓN provisional**; UI táctil implementada.
 - F01-H02 Overlay PDF + geometría: **EN VALIDACIÓN técnica / pendiente validación visual con PDF real**; build frontend verificado.
@@ -28,7 +34,7 @@
 
 ## Bloqueos y pendientes
 
-Para cerrar la primera cadena de validación hace falta **un PDF arquitectónico vectorial real representativo del uso previsto**. También hace falta un entorno donde Docker pueda descargar las imágenes base y probar el flujo de PC/móvil.
+F00-H02 no tiene pendientes abiertos. Los hitos funcionales que siguen en validación todavía requieren un PDF arquitectónico vectorial real representativo del uso previsto.
 
 ## Riesgos abiertos
 
@@ -37,7 +43,7 @@ Para cerrar la primera cadena de validación hace falta **un PDF arquitectónico
 3. El overlay PDF.js + SVG está implementado, pero aún deben verificarse alineación, rotación y CropBox con un plano real.
 4. La clasificación 100/200 mm es configurable y no implica todavía interior/exterior.
 5. El 3D es de validación geométrica, no un BIM/IFC formal.
-6. El build frontend quedó verificado localmente; la imagen web y el flujo Compose quedan sin verificar hasta que Docker Hub sea resoluble desde el daemon.
+6. El worker PDF.js `.mjs` requiere MIME JavaScript en Nginx; se corrigió y verificó en el stack.
 
 ## Git
 

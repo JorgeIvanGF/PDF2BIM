@@ -8,8 +8,11 @@
 - La configuración `tsconfig.node.json` fue validada con TypeScript (`tsc --showConfig`).
 - Build local verificado con `npm run build`: TypeScript y Vite completan correctamente.
 - Se añade `frontend/package-lock.json` para reproducir el árbol de dependencias comprobado.
-- El build de Docker Compose quedó parcialmente bloqueado: backend construido, pero el daemon no resolvió Docker Hub para descargar las imágenes base del frontend.
+- La primera prueba de Docker Compose quedó bloqueada por DNS de Docker Hub; en una nueva sesión Docker Desktop respondió y el stack completo construyó e inició.
 - La API procesó el fixture controlado con 6 candidatos: 4 de 200 mm y 2 de 100 mm.
+- Validación de PC y proxy: frontend 200, health correcto y carga/consulta de geometría same-origin completadas.
+- Nginx sirve `.mjs` como `application/javascript`, corrigiendo el error de importación del worker PDF.js observado en Chrome.
+- El usuario reportó que frontend y health endpoint respondieron desde un teléfono en la Wi-Fi; F00-H02 queda cerrado al cumplir sus cinco criterios.
 
 ## 0.1.0 — 2026-10-05
 - Formalización SDD del proyecto.

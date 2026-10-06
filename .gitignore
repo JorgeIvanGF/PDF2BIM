@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+.npm-cache/
+.docker-cli-config/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Runtime data
+backend/.runtime/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

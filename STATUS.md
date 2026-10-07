@@ -28,7 +28,7 @@
 - F00-H01 Extracción vectorial: **EN VALIDACIÓN**; falta plano real.
 - F00-H02 Entorno de ejecución/prueba móvil: **CERRADO**; cinco criterios cumplidos. La validación desde teléfono se registra como reportada por el usuario.
 - F01-H00 Normalización: **EN VALIDACIÓN provisional**.
-- F01-H01 Calibración: **EN VALIDACIÓN provisional**; UI táctil implementada.
+- F01-H01 Calibración: **CERRADO**; prueba automatizada y validación manual con cota real satisfechas. El usuario confirmó 13350 mm, puntos de la cota `13,35` y selección `2/2`; factor obtenido: 17.6444686 mm/unidad PDF. Esto no valida F02-H00.
 - F01-H02 Overlay PDF + geometría: **CERRADO**; aceptación de build y validación real satisfechas. La evidencia cubre únicamente render, alineación y selección de puntos de este hito.
 - F02-H00 Detector inicial de muros: **EN VALIDACIÓN provisional**.
 - F03-H00 Visor 3D: **EN VALIDACIÓN técnica / pendiente navegador y gestos Android**; build frontend verificado.

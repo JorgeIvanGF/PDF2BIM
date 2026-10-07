@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3 — 2026-10-06
+- Se cierra F01-H01 tras validar manualmente la calibración con `samples/PLANO PDF LEO.pdf`.
+- El usuario confirmó la selección de los extremos de la cota `13,35` en la primera planta y la distancia real de 13350 mm; la interfaz llegó a `2/2`.
+- Para los puntos `(274.9101868, 1539.3955078)` y `(1031.5212402, 1539.3955078)`, la distancia es 756.6110535 unidades PDF y el factor calculado es 17.6444686 mm/unidad PDF.
+- La unidad de la cota no está declarada en el PDF; su interpretación como metros fue confirmada por el usuario para esta validación. Esta evidencia no modifica ni cierra F02-H00.
+
 ## 0.1.2 — 2026-10-06
 - Se cierra F01-H02 tras completar los criterios documentados, incluido el build frontend y la validación visual con `samples/PLANO PDF LEO.pdf`.
 - El backend extrajo 11148 segmentos y PDF.js renderizó correctamente la lámina de una página.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.6: 2026-10-07
+- T-011 perfilado con `samples/PLANO PDF LEO.pdf`: 11148 segmentos raw, 10360 normalizados, 968 candidatos y 204.796 s de detección exhaustiva.
+- T-013 añade buckets angulares y una grilla espacial conservadora. En la misma muestra reduce los pares broadphase de 53659620 posibles a 1830795; la detección directa tarda 12.275 s. Una comparación exhaustiva diferencial confirmó los mismos 726 pares tras aplicar el filtro de solapamiento.
+- T-012 cambia el ratio relativo para medir el solapamiento sobre la línea fuente más larga. La salida baja de 968 a 726 candidatos y en la primera planta de 34 a 6 registros. Desaparecen G1, G2, G4, G5, G7 y G8; G6 y G9 continúan como falsos positivos confirmados. G3 queda filtrado por geometría, sin clasificación semántica.
+- La API se verificó con el PDF real: upload 201, análisis 200, 726 candidatos y ninguna advertencia obsoleta.
+- Suite backend: 17/17 pruebas pasan; `compileall` también pasa. Persiste la advertencia deprecada de `starlette.testclient` respecto de httpx.
+- La muestra no confirma ningún muro real, no mide precisión global y muestra tramos largos sin candidatos. T-012 sigue pendiente y F02-H00 permanece EN VALIDACIÓN.
+- Se elimina del endpoint la advertencia obsoleta que anunciaba comparación exhaustiva e indexación futura.
+
 ## 0.1.5 — 2026-10-07
 - Se cierra F00-H01 tras validar `samples/PLANO PDF LEO.pdf` mediante el flujo real de la aplicación.
 - El preflight reconoció el documento como compatible: 1 página, 5176 paths, 11148 segmentos, 2 imágenes, 100 bloques de texto y 124 elementos vectoriales no convertidos.

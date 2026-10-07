@@ -25,7 +25,7 @@ Detectar un primer `WallCandidate` cuando dos segmentos normalizados representan
 - Encuentros L/T/X.
 - Puertas/ventanas.
 - Curvas.
-- Optimización espacial para miles de segmentos.
+- Indexación espacial adaptativa o paralelización más allá del índice conservador descrito en el plan.
 
 ## Aceptación
 - [x] Detecta muro horizontal de 200 mm controlado.

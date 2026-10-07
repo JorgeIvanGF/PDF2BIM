@@ -96,17 +96,10 @@ def analyze_walls(document_id: str, request: WallAnalysisRequest) -> WallAnalysi
         min_overlap_ratio=request.min_overlap_ratio,
     )
 
-    warnings: list[str] = []
-    if len(normalized) > 2500:
-        warnings.append(
-            "El detector MVP usa comparación exhaustiva de pares; este plano puede requerir indexación espacial en la optimización posterior."
-        )
-
     return WallAnalysisResponse(
         page_number=request.page,
         raw_segment_count=len(raw.segments),
         normalized_segment_count=len(normalized),
         calibration=calibration,
         wall_candidates=candidates,
-        warnings=warnings,
     )

@@ -10,6 +10,6 @@
 - [x] T-008 Calcular índice de confianza.
 - [x] T-009 Crear endpoint `analyze-walls`.
 - [x] T-010 Pruebas unitarias/end-to-end sintéticas.
-- [ ] T-011 Perfilado con plano real.
-- [ ] T-012 Reducir falsos positivos.
-- [ ] T-013 Optimización espacial si los datos lo justifican.
+- [x] T-011 Perfilado con plano real.
+- [ ] T-012 Reducir falsos positivos. Parcial: el ratio respecto de la línea fuente más larga elimina 6 grupos confirmados en primera planta; G6 y G9 permanecen y G3 sigue sin clasificación.
+- [x] T-013 Optimización espacial si los datos lo justifican.

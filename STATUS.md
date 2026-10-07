@@ -2,7 +2,7 @@
 
 ## Resultado verificable
 
-- Backend: **14/14 pruebas pasan** con Python 3.14 en entorno virtual.
+- Backend: **17/17 pruebas pasan** con Python 3.14.5 en entorno virtual.
 - Compilación Python: correcta (`compileall`).
 - Flujo probado: PDF sintético → preflight → segmentos raw → normalización → calibración → `WallCandidate`.
 - Fixture `samples/plano-prueba-vectorial-01.pdf` procesado por la API con calibración 17.638 mm/unidad: **6 candidatos**, cuatro de 200 mm y dos de 100 mm.
@@ -20,6 +20,10 @@
 - **PASADO EN EL HOST:** `192.168.20.183:8080` responde 200 desde este PC y Docker publica el puerto en `0.0.0.0`.
 - **BLOQUEADO:** ninguno actualmente por dependencias externas; el fallo DNS previo de Docker Hub no se reprodujo.
 - **PASADO, reportado por el usuario:** desde un teléfono en la misma Wi-Fi, `http://192.168.20.183:8080` cargó y `/api/health` respondió `status: ok`. Modelo, SO y navegador no informados.
+- **F02-H00, validación real en curso:** con `samples/PLANO PDF LEO.pdf`, 11148 segmentos raw y 10360 normalizados. El perfil inicial produjo 968 candidatos en 204.796 s. Se confirmaron 8 grupos falsos positivos de 9 en la primera planta; G3 no tiene clasificación y ningún grupo está confirmado como muro.
+- **F02-H00, T-013 PASADO:** grilla espacial conservadora y buckets angulares evaluaron 1830795 pares broadphase frente a 53659620 posibles. La detección directa quedó en 12.275 s y la salida fue equivalente a la búsqueda exhaustiva después del filtro T-012.
+- **F02-H00, T-012 PARCIAL / PENDIENTE:** usar el segmento fuente más largo como denominador del solapamiento redujo el resultado de 968 a 726 candidatos y la primera planta de 34 registros a 6. G6 y G9 siguen siendo falsos positivos confirmados; G3 se filtró geométricamente sin asignarle semántica. La muestra no permite calcular precisión global ni confirma verdaderos positivos.
+- **F02-H00, API PASADO:** después de retirar la advertencia obsoleta, upload del PDF respondió 201 y análisis respondió 200 en 14.471 s; devolvió 726 candidatos y ninguna advertencia.
 
 ## Estado SDD
 
@@ -41,7 +45,7 @@ F00-H02 y F00-H01 no tienen pendientes abiertos. F02-H00 continúa en validació
 
 ## Riesgos abiertos
 
-1. El detector inicial compara pares O(n²); se optimizará después de perfilar un plano real.
+1. El detector usa una grilla espacial conservadora, pero siguen pendientes falsos positivos en ventanas y elementos de anotación; no hay etiqueta semántica de vistas.
 2. Solo soportamos segmentos rectos y rectángulos; curvas se registran, no se reinterpretan.
 3. El overlay PDF.js + SVG quedó validado visualmente con `samples/PLANO PDF LEO.pdf`; rotaciones y CropBoxes exóticos siguen fuera del alcance verificado.
 4. La clasificación 100/200 mm es configurable y no implica todavía interior/exterior.

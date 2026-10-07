@@ -8,6 +8,7 @@
 - Fixture `samples/plano-prueba-vectorial-01.pdf` procesado por la API con calibración 17.638 mm/unidad: **6 candidatos**, cuatro de 200 mm y dos de 100 mm.
 - Frontend implementado: carga, diagnóstico, render del PDF original con PDF.js, overlay SVG, calibración táctil, detección, exportación JSON y visor 3D preliminar con That Open Engine.
 - **PASADO:** F01-H02 validado con `samples/PLANO PDF LEO.pdf`; backend extrajo 11148 segmentos y el usuario confirmó render correcto, alineación visual del overlay en primera planta y selección de dos puntos hasta `2/2`.
+- **PASADO:** F01-H00 validado con `samples/PLANO PDF LEO.pdf`; 11148 segmentos extraídos, 10360 normalizados, 103 degenerados eliminados, 685 duplicados colapsados y 11045 IDs fuente preservados; invariantes de canonicalización, longitud y ángulo sin inconsistencias. Pruebas de normalización: 2/2.
 - Infraestructura local/móvil implementada: Docker Compose + Nginx reverse proxy, puerto único `8080`.
 - Build frontend local: **PASS** (`tsc -b` y Vite 8.3.2); los errores TS7016 y TS5096 no reaparecen. Se generó `frontend/package-lock.json` para fijar el árbol instalado.
 - **PASADO:** Docker Desktop 4.35.1 / Engine 27.3.1 responden con permisos elevados; Compose 2.29.7.
@@ -27,7 +28,7 @@
 - F00-H00 Fundamentos/arquitectura: **CERRADO**.
 - F00-H01 Extracción vectorial: **EN VALIDACIÓN**; falta plano real.
 - F00-H02 Entorno de ejecución/prueba móvil: **CERRADO**; cinco criterios cumplidos. La validación desde teléfono se registra como reportada por el usuario.
-- F01-H00 Normalización: **EN VALIDACIÓN provisional**.
+- F01-H00 Normalización: **CERRADO**; criterios automatizados y validación sobre geometría de plano arquitectónico real satisfechos. No valida curvas ni detección de muros.
 - F01-H01 Calibración: **CERRADO**; prueba automatizada y validación manual con cota real satisfechas. El usuario confirmó 13350 mm, puntos de la cota `13,35` y selección `2/2`; factor obtenido: 17.6444686 mm/unidad PDF. Esto no valida F02-H00.
 - F01-H02 Overlay PDF + geometría: **CERRADO**; aceptación de build y validación real satisfechas. La evidencia cubre únicamente render, alineación y selección de puntos de este hito.
 - F02-H00 Detector inicial de muros: **EN VALIDACIÓN provisional**.

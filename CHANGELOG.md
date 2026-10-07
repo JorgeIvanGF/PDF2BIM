@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4 — 2026-10-07
+- Se cierra F01-H00 tras validar el normalizador existente sobre `samples/PLANO PDF LEO.pdf`.
+- De 11148 segmentos extraídos, 10360 quedaron normalizados; se eliminaron 103 degenerados y se colapsaron 685 duplicados en 606 grupos, preservando 11045 IDs fuente.
+- No se encontraron inconsistencias de canonicalización, longitud o ángulo; `backend/tests/test_normalize.py` pasó sus 2 pruebas.
+- La validación cubre la geometría segmentada de la lámina completa. No valida curvas ni detección de muros y no modifica F02-H00.
+
 ## 0.1.3 — 2026-10-06
 - Se cierra F01-H01 tras validar manualmente la calibración con `samples/PLANO PDF LEO.pdf`.
 - El usuario confirmó la selección de los extremos de la cota `13,35` en la primera planta y la distancia real de 13350 mm; la interfaz llegó a `2/2`.

@@ -1,4 +1,4 @@
-# Estado técnico — 2026-10-05 — hotfix 0.1.1
+# Estado técnico — 2026-10-06 — hotfix 0.1.1
 
 ## Resultado verificable
 
@@ -7,6 +7,7 @@
 - Flujo probado: PDF sintético → preflight → segmentos raw → normalización → calibración → `WallCandidate`.
 - Fixture `samples/plano-prueba-vectorial-01.pdf` procesado por la API con calibración 17.638 mm/unidad: **6 candidatos**, cuatro de 200 mm y dos de 100 mm.
 - Frontend implementado: carga, diagnóstico, render del PDF original con PDF.js, overlay SVG, calibración táctil, detección, exportación JSON y visor 3D preliminar con That Open Engine.
+- **PASADO:** F01-H02 validado con `samples/PLANO PDF LEO.pdf`; backend extrajo 11148 segmentos y el usuario confirmó render correcto, alineación visual del overlay en primera planta y selección de dos puntos hasta `2/2`.
 - Infraestructura local/móvil implementada: Docker Compose + Nginx reverse proxy, puerto único `8080`.
 - Build frontend local: **PASS** (`tsc -b` y Vite 8.3.2); los errores TS7016 y TS5096 no reaparecen. Se generó `frontend/package-lock.json` para fijar el árbol instalado.
 - **PASADO:** Docker Desktop 4.35.1 / Engine 27.3.1 responden con permisos elevados; Compose 2.29.7.
@@ -28,7 +29,7 @@
 - F00-H02 Entorno de ejecución/prueba móvil: **CERRADO**; cinco criterios cumplidos. La validación desde teléfono se registra como reportada por el usuario.
 - F01-H00 Normalización: **EN VALIDACIÓN provisional**.
 - F01-H01 Calibración: **EN VALIDACIÓN provisional**; UI táctil implementada.
-- F01-H02 Overlay PDF + geometría: **EN VALIDACIÓN técnica / pendiente validación visual con PDF real**; build frontend verificado.
+- F01-H02 Overlay PDF + geometría: **CERRADO**; aceptación de build y validación real satisfechas. La evidencia cubre únicamente render, alineación y selección de puntos de este hito.
 - F02-H00 Detector inicial de muros: **EN VALIDACIÓN provisional**.
 - F03-H00 Visor 3D: **EN VALIDACIÓN técnica / pendiente navegador y gestos Android**; build frontend verificado.
 
@@ -40,7 +41,7 @@ F00-H02 no tiene pendientes abiertos. Los hitos funcionales que siguen en valida
 
 1. El detector inicial compara pares O(n²); se optimizará después de perfilar un plano real.
 2. Solo soportamos segmentos rectos y rectángulos; curvas se registran, no se reinterpretan.
-3. El overlay PDF.js + SVG está implementado, pero aún deben verificarse alineación, rotación y CropBox con un plano real.
+3. El overlay PDF.js + SVG quedó validado visualmente con `samples/PLANO PDF LEO.pdf`; rotaciones y CropBoxes exóticos siguen fuera del alcance verificado.
 4. La clasificación 100/200 mm es configurable y no implica todavía interior/exterior.
 5. El 3D es de validación geométrica, no un BIM/IFC formal.
 6. El worker PDF.js `.mjs` requiere MIME JavaScript en Nginx; se corrigió y verificó en el stack.

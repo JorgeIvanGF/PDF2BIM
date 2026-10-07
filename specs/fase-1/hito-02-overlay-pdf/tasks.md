@@ -6,5 +6,5 @@
 - [x] T-004 Mantener selección de calibración sobre overlay.
 - [x] T-005 Integrar ejes de WallCandidate.
 - [x] T-006 Build frontend.
-- [ ] T-007 Validar alineación con plano real.
+- [x] T-007 Validar alineación con plano real. Usuario confirmó alineación visual del overlay en primera planta y selección táctil exacta de dos puntos (2/2) con `samples/PLANO PDF LEO.pdf`.
 - [x] T-008 Verificar MIME e importación del worker PDF.js `.mjs` en Nginx con fixture controlado.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-10-06
+- Se cierra F01-H02 tras completar los criterios documentados, incluido el build frontend y la validación visual con `samples/PLANO PDF LEO.pdf`.
+- El backend extrajo 11148 segmentos y PDF.js renderizó correctamente la lámina de una página.
+- El usuario confirmó que el overlay SVG quedó alineado visualmente en la primera planta, que coinciden muros exteriores e interiores y líneas relevantes, y que la selección de puntos coincide con el clic y alcanza `2/2`.
+- Esta validación no incluye el cierre de F01-H01 ni verifica la normalización, la calibración con cotas ni el detector de muros.
+
 ## 0.1.1 — 2026-10-05
 - Hotfix del primer build Docker del frontend.
 - Se añade `@types/three` 0.184.0 para resolver TS7016 en `Wall3DViewer.tsx`.

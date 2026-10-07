@@ -37,5 +37,14 @@ Demostrar que PDF2BIM puede recibir un PDF vectorial y reconstruir segmentos rec
 - [x] Rectángulo se descompone en 4 segmentos.
 - [x] API upload→geometry funciona end-to-end.
 - [x] Frontend de revisión implementado en código.
-- [ ] Build frontend verificado en entorno con acceso a npm.
-- [ ] Validación con al menos un PDF arquitectónico real del usuario.
+- [x] Build frontend verificado en entorno con acceso a npm.
+- [x] Validación con al menos un PDF arquitectónico real del usuario.
+
+## Validación real y cierre
+
+- PDF validado mediante el flujo de la aplicación: `samples/PLANO PDF LEO.pdf`.
+- Preflight compatible: 1 página, 5176 paths, 11148 segmentos, 2 imágenes, 100 bloques de texto y 124 elementos vectoriales no convertidos.
+- `POST /api/documents` respondió `201 Created`; `GET /api/documents/{id}/geometry?page=1` respondió `200 OK` con la geometría de la página.
+- El build frontend está registrado como PASS en `STATUS.md` y T-012 está completada; se volvió a ejecutar para este cierre.
+- La validación cubre extracción de geometría recta y rectángulos. No valida curvas, identificación semántica de vistas ni detección de muros.
+- No fue necesario repetir la prueba móvil de F00-H02 para satisfacer los criterios de este hito.

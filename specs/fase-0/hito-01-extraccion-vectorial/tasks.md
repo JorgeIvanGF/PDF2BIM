@@ -12,5 +12,5 @@
 - [x] T-010 Crear frontend mobile-first.
 - [x] T-011 Crear visor SVG de segmentos.
 - [x] T-012 Verificar build frontend con dependencias npm.
-- [ ] T-013 Validar con PDF arquitectónico real.
-- [ ] T-014 Cerrar hito tras validación real.
+- [x] T-013 Validar con PDF arquitectónico real: `samples/PLANO PDF LEO.pdf`; preflight compatible, upload `201`, consulta de geometría `200` y 11148 segmentos.
+- [x] T-014 Cerrar hito tras verificar los criterios y registrar el alcance y límites de la validación real.

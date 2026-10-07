@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.5 — 2026-10-07
+- Se cierra F00-H01 tras validar `samples/PLANO PDF LEO.pdf` mediante el flujo real de la aplicación.
+- El preflight reconoció el documento como compatible: 1 página, 5176 paths, 11148 segmentos, 2 imágenes, 100 bloques de texto y 124 elementos vectoriales no convertidos.
+- El upload respondió `201 Created` y la consulta de geometría por página respondió `200 OK`; el build frontend pasó.
+- La evidencia cubre extracción de geometría recta y rectángulos. No valida curvas, identificación semántica de vistas ni detección de muros. No fue necesario repetir la prueba móvil de F00-H02.
+
 ## 0.1.4 — 2026-10-07
 - Se cierra F01-H00 tras validar el normalizador existente sobre `samples/PLANO PDF LEO.pdf`.
 - De 11148 segmentos extraídos, 10360 quedaron normalizados; se eliminaron 103 degenerados y se colapsaron 685 duplicados en 606 grupos, preservando 11045 IDs fuente.

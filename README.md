@@ -8,7 +8,7 @@ Prototipo SDD para interpretar geometría vectorial de planos PDF y convertirla 
 ## Estado actual
 
 - F00-H00 Fundamentos y arquitectura: **CERRADO**
-- F00-H01 Extracción vectorial PDF: **EN VALIDACIÓN**
+- F00-H01 Extracción vectorial PDF: **CERRADO**
 - F00-H02 Entorno de ejecución/prueba móvil: **EN VALIDACIÓN**
 - F01-H00 Normalización geométrica: **CERRADO**
 - F01-H01 Calibración: **CERRADO**

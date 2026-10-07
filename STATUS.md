@@ -8,6 +8,7 @@
 - Fixture `samples/plano-prueba-vectorial-01.pdf` procesado por la API con calibración 17.638 mm/unidad: **6 candidatos**, cuatro de 200 mm y dos de 100 mm.
 - Frontend implementado: carga, diagnóstico, render del PDF original con PDF.js, overlay SVG, calibración táctil, detección, exportación JSON y visor 3D preliminar con That Open Engine.
 - **PASADO:** F01-H02 validado con `samples/PLANO PDF LEO.pdf`; backend extrajo 11148 segmentos y el usuario confirmó render correcto, alineación visual del overlay en primera planta y selección de dos puntos hasta `2/2`.
+- **PASADO:** F00-H01 validado con `samples/PLANO PDF LEO.pdf` en el flujo de la aplicación: preflight compatible (1 página, 5176 paths, 11148 segmentos, 2 imágenes, 100 bloques de texto, 124 elementos no convertidos), upload `201 Created` y consulta de geometría `200 OK`. El build frontend pasó. La validación cubre segmentos rectos y rectángulos, no curvas, semántica de vistas ni detección de muros.
 - **PASADO:** F01-H00 validado con `samples/PLANO PDF LEO.pdf`; 11148 segmentos extraídos, 10360 normalizados, 103 degenerados eliminados, 685 duplicados colapsados y 11045 IDs fuente preservados; invariantes de canonicalización, longitud y ángulo sin inconsistencias. Pruebas de normalización: 2/2.
 - Infraestructura local/móvil implementada: Docker Compose + Nginx reverse proxy, puerto único `8080`.
 - Build frontend local: **PASS** (`tsc -b` y Vite 8.3.2); los errores TS7016 y TS5096 no reaparecen. Se generó `frontend/package-lock.json` para fijar el árbol instalado.
@@ -26,7 +27,7 @@
 - No se inicia otro hito en esta intervención, según la instrucción del usuario.
 
 - F00-H00 Fundamentos/arquitectura: **CERRADO**.
-- F00-H01 Extracción vectorial: **EN VALIDACIÓN**; falta plano real.
+- F00-H01 Extracción vectorial: **CERRADO**; criterios sintéticos, build y flujo real con PDF arquitectónico satisfechos. No valida curvas, identificación semántica de vistas ni detección de muros.
 - F00-H02 Entorno de ejecución/prueba móvil: **CERRADO**; cinco criterios cumplidos. La validación desde teléfono se registra como reportada por el usuario.
 - F01-H00 Normalización: **CERRADO**; criterios automatizados y validación sobre geometría de plano arquitectónico real satisfechos. No valida curvas ni detección de muros.
 - F01-H01 Calibración: **CERRADO**; prueba automatizada y validación manual con cota real satisfechas. El usuario confirmó 13350 mm, puntos de la cota `13,35` y selección `2/2`; factor obtenido: 17.6444686 mm/unidad PDF. Esto no valida F02-H00.
@@ -36,7 +37,7 @@
 
 ## Bloqueos y pendientes
 
-F00-H02 no tiene pendientes abiertos. Los hitos funcionales que siguen en validación todavía requieren un PDF arquitectónico vectorial real representativo del uso previsto.
+F00-H02 y F00-H01 no tienen pendientes abiertos. F02-H00 continúa en validación independiente; su cierre no forma parte de la evidencia de extracción registrada aquí.
 
 ## Riesgos abiertos
 

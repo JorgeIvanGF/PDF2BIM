@@ -120,6 +120,59 @@ def test_keeps_wall_pair_with_sufficient_overlap_on_both_source_segments() -> No
     assert math.isclose(found[0].length_mm, 1500)
 
 
+def test_keeps_short_isolated_100_and_200_mm_wall_pairs() -> None:
+    # These 350 mm and 470 mm controls bracket the confirmed false-positive lengths.
+    for thickness_mm in (100, 200):
+        for length_mm in (350, 470):
+            segments = [
+                nseg("short-face-a", 0, 0, length_mm / 10, 0),
+                nseg("short-face-b", 0, thickness_mm / 10, length_mm / 10, thickness_mm / 10),
+            ]
+
+            found = detect_wall_candidates(
+                segments,
+                mm_per_pdf_unit=10,
+                rules=rules(),
+                angular_tolerance_deg=1.5,
+                min_overlap_mm=300,
+                min_overlap_ratio=0.45,
+            )
+
+            assert len(found) == 1
+            assert found[0].wall_type_rule_id == f"wall-{thickness_mm}"
+            assert math.isclose(found[0].length_mm, length_mm)
+
+
+def test_keeps_short_100_and_200_mm_walls_at_a_perpendicular_junction() -> None:
+    # The short wall meets a longer perpendicular pair at its midpoint.
+    for thickness_mm in (100, 200):
+        for length_mm in (350, 470):
+            wall_length_pdf = length_mm / 10
+            thickness_pdf = thickness_mm / 10
+            segments = [
+                nseg("short-face-a", 0, 0, wall_length_pdf, 0),
+                nseg("short-face-b", 0, thickness_pdf, wall_length_pdf, thickness_pdf),
+                nseg("junction-face-a", wall_length_pdf / 2, -80, wall_length_pdf / 2, 0),
+                nseg("junction-face-b", wall_length_pdf / 2 + thickness_pdf, -80, wall_length_pdf / 2 + thickness_pdf, 0),
+            ]
+
+            found = detect_wall_candidates(
+                segments,
+                mm_per_pdf_unit=10,
+                rules=rules(),
+                angular_tolerance_deg=1.5,
+                min_overlap_mm=300,
+                min_overlap_ratio=0.45,
+            )
+
+            assert any(
+                candidate.source_segment_ids == ("short-face-a", "short-face-b")
+                and candidate.wall_type_rule_id == f"wall-{thickness_mm}"
+                and math.isclose(candidate.length_mm, length_mm)
+                for candidate in found
+            )
+
+
 def test_spatial_index_matches_exhaustive_pair_search() -> None:
     rng = random.Random(1702)
     segments = [

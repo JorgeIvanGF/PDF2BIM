@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.7: 2026-10-07
+- T-012: análisis geométrico adicional de G6 y G9 en `samples/PLANO PDF LEO.pdf`. G6 produce 4 registros redundantes sobre un eje (líneas fuente representativas de 500.2/350.1 mm, separación 100.0 mm, solapamiento 350.1 mm, ratio 0.700); G9 produce 2 (líneas de 469.7 mm, separación 105.6 mm, solapamiento completo, ratio 1.000).
+- No se implementa otro filtro: las señales analizadas de paralelismo, solapamiento, espesor, densidad local, cruces, estilos y redundancia no separan de forma segura ambos falsos positivos de muros cortos válidos.
+- Se añaden 8 controles sintéticos positivos: muros de 350/470 mm y 100/200 mm de espesor, aislados y en encuentro. Todos se detectan. La suite backend pasa 19/19.
+- Revalidación del PDF sin cambio de algoritmo: 726 candidatos totales, 6 registros en la primera planta, G6 y G9 presentes, 1830795 pares broadphase, salida equivalente a los 726 pares esperados tras el filtro, 197 grupos de eje redundantes con 661 registros y 9.453 s de detección directa. La API respondió upload 201 y análisis 200 en 13.282 s, con 0 advertencias.
+- T-012 permanece parcial y F02-H00 EN VALIDACIÓN; no hay muro real confirmado y los controles sintéticos no sustituyen una referencia positiva real.
+
 ## 0.1.6: 2026-10-07
 - T-011 perfilado con `samples/PLANO PDF LEO.pdf`: 11148 segmentos raw, 10360 normalizados, 968 candidatos y 204.796 s de detección exhaustiva.
 - T-013 añade buckets angulares y una grilla espacial conservadora. En la misma muestra reduce los pares broadphase de 53659620 posibles a 1830795; la detección directa tarda 12.275 s. Una comparación exhaustiva diferencial confirmó los mismos 726 pares tras aplicar el filtro de solapamiento.

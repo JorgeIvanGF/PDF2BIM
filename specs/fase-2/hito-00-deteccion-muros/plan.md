@@ -36,4 +36,11 @@ Validación ejecutada sobre `samples/PLANO PDF LEO.pdf`, página completa, con c
 
 La geometría de G1, G2, G4, G5, G7 y G8 contiene pares cuyo solapamiento cubre una fracción pequeña de la línea fuente más larga. G6 y G9 son pares cortos de longitudes similares y superan el ratio, por lo que esta regla no los separa de un muro corto usando solo estos atributos. T-012 permanece pendiente; quedan falsos positivos confirmados y no hay una referencia positiva real confirmada para medir cobertura.
 
+### Análisis adicional de T-012
+Se inspeccionaron los segmentos fuente y el contexto geométrico local de G6 y G9. G6 produce cuatro registros sobre el mismo eje por combinaciones redundantes de líneas verticales próximas; sus líneas representativas miden aproximadamente 500.2 mm y 350.1 mm, con separación de 100.0 mm, solapamiento de 350.1 mm y ratio 0.700. G9 produce dos registros; ambas líneas miden aproximadamente 469.7 mm, con separación de 105.6 mm, solapamiento completo y ratio 1.000. Ambos pares son verticales y cumplen las reglas actuales de espesor, ángulo y solapamiento.
+
+Como análisis descriptivo, la geometría vecina a 5/10/20 unidades PDF del eje cuenta 10/19/73 segmentos para G6 y 2/2/18 para G9. Hay cruces geométricos locales y redundancia en ambos casos, pero ninguna de estas señales está definida como semántica de muro en el alcance. Una regla por densidad o intersecciones también podría rechazar encuentros válidos; una regla por estilo o redundancia tampoco separa ambos grupos de forma común. No se implementa un nuevo rechazo sin positivos reales etiquetados que permitan medir el riesgo.
+
+Se añadieron guardas sintéticas para muros aislados y en encuentro, de 100 mm y 200 mm de espesor, con longitudes de 350 mm y 470 mm. Los ocho controles son detectados. Estas pruebas protegen muros cortos válidos frente a futuros cambios, pero no constituyen evidencia de precisión sobre planos reales. G6 y G9 permanecen como falsos positivos confirmados y T-012 sigue parcial.
+
 La respuesta API ya no emite la advertencia obsoleta que anunciaba comparación exhaustiva e indexación futura. El hito continúa EN VALIDACIÓN.

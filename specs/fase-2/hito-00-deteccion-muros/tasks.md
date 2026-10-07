@@ -11,5 +11,5 @@
 - [x] T-009 Crear endpoint `analyze-walls`.
 - [x] T-010 Pruebas unitarias/end-to-end sintéticas.
 - [x] T-011 Perfilado con plano real.
-- [ ] T-012 Reducir falsos positivos. Parcial: el ratio respecto de la línea fuente más larga elimina 6 grupos confirmados en primera planta; G6 y G9 permanecen y G3 sigue sin clasificación.
+- [ ] T-012 Reducir falsos positivos. Parcial: el ratio respecto de la línea fuente más larga elimina 6 grupos confirmados en primera planta; G6 y G9 permanecen y G3 sigue sin clasificación. Se analizaron geometría fuente y vecindad de G6/G9; no se encontró una regla geométrica común que sea segura frente a los controles de muros cortos. Se añadieron guardas sintéticas de muros de 350/470 mm, espesores 100/200 mm, aislados y en encuentro; los 8 casos pasan.
 - [x] T-013 Optimización espacial si los datos lo justifican.
